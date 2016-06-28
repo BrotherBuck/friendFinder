@@ -35,7 +35,7 @@ function handleRequest(request, response){
 		
 	}
 }
-
+// still need to find way to connect pages
 
 function display_home(url, request, response){
 	var myHTML = '<html>';
@@ -56,19 +56,13 @@ function display_surveyPage(url, request, response){
 	response.writeHead(200, {'Content-Type': 'text/html'});
 	response.end(myHTML);
 }
-// Routes
-// =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get('/', function(req, res){
-	//res.send("Welcome to the Friend Finder!")
-	res.sendFile(path.join(__dirname + '/home.html'));
-})
+//route to external .js pages
 
-app.get('/surveyPage', function(req, res){
-	//res.send("Welcome to the Friend Finder!")
-	res.sendFile(path.join(__dirname + '/surveyPage.html'));
-})
+require('./app/routing/html-routes.js')(app);
+
+require('./app/routing/api-routes.js')(app);
+
 
 
 
